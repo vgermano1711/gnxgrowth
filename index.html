@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery no Vermelho — Pare de Trabalhar no Prejuízo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63946;
+            --dark-red: #C1121F;
+            --yellow: #FFD60A;
+            --dark: #0D0D0D;
+            --dark2: #1A1A1A;
+            --dark3: #222222;
+            --gray: #888888;
+            --light: #F5F5F5;
+            --white: #FFFFFF;
+            --green: #2DC653;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .urgency-bar {
+            background: var(--red);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            animation: pulse-bar 2s infinite;
+        }
+
+        @keyframes pulse-bar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        .hero {
+            background: linear-gradient(160deg, #1a0000 0%, #0D0D0D 60%);
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(230,57,70,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(230,57,70,0.15);
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 62px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 span { color: var(--red); }
+        .hero h1 .yellow { color: var(--yellow); }
+
+        .hero-sub {
+            font-size: clamp(16px, 2.5vw, 22px);
+            color: #CCCCCC;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .ebook-mockup {
+            position: relative;
+            display: inline-block;
+            margin: 40px auto;
+        }
+
+        .ebook-visual {
+            width: 280px;
+            height: 370px;
+            background: linear-gradient(135deg, #1a0000 0%, #2d0000 50%, #1a0000 100%);
+            border-radius: 8px 16px 16px 8px;
+            box-shadow:
+                -6px 6px 0 #8B0000,
+                -12px 12px 0 #5a0000,
+                0 30px 80px rgba(230,57,70,0.4),
+                0 0 0 1px rgba(230,57,70,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: transform 0.3s ease;
+        }
+
+        .ebook-visual:hover {
+            transform: translateY(-5px) rotate(1deg);
+        }
+
+        .ebook-visual::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.01) 10px,
+                rgba(255,255,255,0.01) 20px
+            );
+        }
+
+        .ebook-spine {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 30px;
+            background: linear-gradient(180deg, #8B0000, #5a0000);
+            border-radius: 8px 0 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ebook-spine span {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 9px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ebook-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(230,57,70,0.8));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .ebook-title-text {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--white);
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .ebook-title-text span { color: var(--red); }
+
+        .ebook-subtitle-text {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .ebook-tag {
+            background: var(--red);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ebook-stars {
+            position: absolute;
+            bottom: 20px;
+            right: 15px;
+            color: var(--yellow);
+            font-size: 12px;
+        }
+
+        .social-proof-bar {
+            background: var(--dark2);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .sp-item { text-align: center; }
+
+        .sp-number {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--red);
+            display: block;
+        }
+
+        .sp-label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        section {
+            padding: 70px 20px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(230,57,70,0.12);
+            border: 1px solid rgba(230,57,70,0.3);
+            color: var(--red);
+            padding: 5px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(26px, 4vw, 42px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 span { color: var(--red); }
+        h2 .yellow { color: var(--yellow); }
+
+        .pain-section {
+            background: var(--dark2);
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(230,57,70,0.1);
+        }
+
+        .pain-list { list-style: none; margin-top: 30px; }
+
+        .pain-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 16px;
+            color: #CCCCCC;
+            line-height: 1.5;
+        }
+
+        .pain-list li:last-child { border-bottom: none; }
+        .pain-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+        .promise-box {
+            background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.02));
+            border: 1px solid rgba(230,57,70,0.25);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .promise-box p {
+            font-size: 18px;
+            color: #CCCCCC;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .chapter-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover {
+            border-color: rgba(230,57,70,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .chapter-number {
+            background: var(--red);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .chapter-info h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--white);
+        }
+
+        .chapter-info p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .forwhom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .forwhom-card {
+            background: var(--dark2);
+            border-radius: 14px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .forwhom-card.yes { border-color: rgba(45,198,83,0.2); }
+        .forwhom-card.no { border-color: rgba(230,57,70,0.15); }
+
+        .forwhom-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .forwhom-card.yes .forwhom-title { color: var(--green); }
+        .forwhom-card.no .forwhom-title { color: var(--red); }
+
+        .forwhom-list { list-style: none; }
+
+        .forwhom-list li {
+            font-size: 14px;
+            color: #CCCCCC;
+            padding: 7px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 16px; right: 20px;
+            font-size: 60px;
+            color: rgba(230,57,70,0.15);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-stars { color: var(--yellow); font-size: 14px; margin-bottom: 12px; }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: #CCCCCC;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+
+        .author-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .author-name { font-size: 14px; font-weight: 700; color: var(--white); }
+        .author-role { font-size: 12px; color: var(--gray); }
+
+        .offer-section {
+            background: var(--dark2);
+            border: 1px solid rgba(230,57,70,0.2);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-section::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(230,57,70,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--dark);
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px 20px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .price-container { margin: 30px 0; }
+
+        .price-old {
+            font-size: 20px;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+
+        .price-new {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .price-new sup { font-size: 32px; vertical-align: super; }
+        .price-new sub { font-size: 20px; vertical-align: baseline; }
+        .price-note { font-size: 14px; color: var(--gray); margin-top: 8px; }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2DC653, #1fa83f);
+            color: white;
+            font-size: 18px;
+            font-weight: 900;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(45,198,83,0.35), 0 0 0 0 rgba(45,198,83,0.4);
+            animation: pulse-cta 2.5s infinite;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-btn:hover::before { left: 100%; }
+
+        @keyframes pulse-cta {
+            0%, 100% { box-shadow: 0 8px 30px rgba(45,198,83,0.35), 0 0 0 0 rgba(45,198,83,0.4); }
+            50% { box-shadow: 0 8px 30px rgba(45,198,83,0.5), 0 0 0 12px rgba(45,198,83,0); }
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(45,198,83,0.45);
+        }
+
+        .cta-subtext { font-size: 13px; color: var(--gray); margin-top: 14px; }
+        .cta-subtext span { color: var(--green); }
+
+        .guarantee-box {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: rgba(45,198,83,0.05);
+            border: 1px solid rgba(45,198,83,0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .guarantee-icon { font-size: 56px; flex-shrink: 0; }
+        .guarantee-title { font-size: 18px; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+        .guarantee-text { font-size: 14px; color: #CCCCCC; line-height: 1.6; }
+
+        .faq-list { margin-top: 40px; }
+
+        .faq-item {
+            background: var(--dark2);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover { background: rgba(255,255,255,0.03); }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            font-size: 14px;
+            color: #AAAAAA;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-answer.active { display: block; }
+        .faq-arrow { transition: transform 0.3s; color: var(--red); }
+        .faq-arrow.rotated { transform: rotate(180deg); }
+
+        .urgency-final {
+            background: linear-gradient(135deg, #1a0000, #2d0000);
+            border: 1px solid rgba(230,57,70,0.3);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 860px;
+        }
+
+        footer {
+            background: #0A0A0A;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p { font-size: 13px; color: var(--gray); line-height: 1.8; }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--white); }
+
+        .sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(13,13,13,0.97);
+            border-top: 1px solid rgba(230,57,70,0.3);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .sticky-price { font-size: 22px; font-weight: 900; color: var(--white); }
+
+        .sticky-price small {
+            font-size: 12px;
+            color: var(--gray);
+            display: block;
+            font-weight: 400;
+        }
+
+        .sticky-btn {
+            background: linear-gradient(135deg, #2DC653, #1fa83f);
+            color: white;
+            font-size: 14px;
+            font-weight: 900;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 640px) {
+            section { padding: 50px 16px; }
+            .forwhom-grid { grid-template-columns: 1fr; }
+            .chapters-grid { grid-template-columns: 1fr; }
+            .offer-section { padding: 40px 20px; }
+            .price-new { font-size: 56px; }
+            .guarantee-box { flex-direction: column; text-align: center; }
+            .social-proof-bar { gap: 20px; }
+            .pain-section { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BARRA DE URGÊNCIA -->
+<div class="urgency-bar">
+    🔥 OFERTA POR TEMPO LIMITADO — Preço especial de lançamento. Garanta agora antes que acabe!
+</div>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding-top: 70px; padding-bottom: 20px;">
+    <div class="hero-badge">⚠️ Atenção: Dono de Delivery</div>
+
+    <h1>
+        Seu delivery está<br>
+        <span>sangrando dinheiro</span><br>
+        e você <span class="yellow">nem percebe</span>
+    </h1>
+
+    <p class="hero-sub">
+        Descubra os <strong>9 erros silenciosos</strong> que destroem restaurantes e negócios de entrega — e o plano passo a passo para corrigi-los em <strong>90 dias</strong>.
+    </p>
+
+    <div class="ebook-mockup">
+        <div class="ebook-visual">
+            <div class="ebook-spine"><span>GNX Growth</span></div>
+            <div class="ebook-icon">🍕</div>
+            <div class="ebook-title-text">Delivery no<br><span>Vermelho</span></div>
+            <div class="ebook-subtitle-text">Os erros que estão te quebrando</div>
+            <div class="ebook-tag">eBook Completo</div>
+            <div class="ebook-stars">★★★★★</div>
+        </div>
+    </div>
+
+    <br>
+
+    <a href="https://pay.hotmart.com/D105685422V?bid=1778001823072" target="_blank" class="cta-btn">
+        🚀 QUERO SALVAR MEU DELIVERY AGORA
+    </a>
+    <p class="cta-subtext">
+        <span>✅ Acesso imediato</span> &nbsp;•&nbsp; Leitura no celular, tablet ou PC &nbsp;•&nbsp; <span>🔒 Compra 100% segura</span>
+    </p>
+</section>
+
+<!-- PROVA SOCIAL -->
+<div class="social-proof-bar">
+    <div class="sp-item">
+        <span class="sp-number">+1.200</span>
+        <span class="sp-label">Donos de delivery</span>
+    </div>
+    <div class="sp-item">
+        <span class="sp-number">9</span>
+        <span class="sp-label">Capítulos práticos</span>
+    </div>
+    <div class="sp-item">
+        <span class="sp-number">4.9★</span>
+        <span class="sp-label">Avaliação média</span>
+    </div>
+    <div class="sp-item">
+        <span class="sp-number">90</span>
+        <span class="sp-label">Dias de transformação</span>
+    </div>
+</div>
+
+<!-- DOR -->
+<div style="padding: 60px 20px; max-width: 860px; margin: 0 auto;">
+    <div class="pain-section">
+        <div class="section-tag">Você se identifica?</div>
+        <h2>Se você respondeu <span>SIM</span> para alguma dessas perguntas, esse eBook é para você:</h2>
+
+        <ul class="pain-list">
+            <li>
+                <span class="pain-icon">😰</span>
+                <span>Você vende bastante, mas no final do mês o dinheiro parece <strong>evaporar</strong> e você não sabe exatamente para onde foi?</span>
+            </li>
+            <li>
+                <span class="pain-icon">📉</span>
+                <span>Você sente que está <strong>trabalhando de graça</strong> — ou pior, pagando para trabalhar?</span>
+            </li>
+            <li>
+                <span class="pain-icon">⏰</span>
+                <span>Seus clientes reclamam de <strong>atraso nas entregas</strong> e você não sabe como resolver?</span>
+            </li>
+            <li>
+                <span class="pain-icon">👻</span>
+                <span>Clientes fazem <strong>um pedido e somem</strong>, nunca mais voltando?</span>
+            </li>
+            <li>
+                <span class="pain-icon">📱</span>
+                <span>Você está <strong>invisível nas redes sociais</strong> enquanto concorrentes menores aparecem na frente?</span>
+            </li>
+            <li>
+                <span class="pain-icon">💸</span>
+                <span>Você copia o preço da concorrência sem saber se está <strong>vendendo no prejuízo</strong>?</span>
+            </li>
+            <li>
+                <span class="pain-icon">⭐</span>
+                <span>Sua nota nos aplicativos está <strong>caindo</strong> e você não sabe exatamente o que está errado?</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- PROMESSA -->
+<div style="padding: 0 20px 60px; max-width: 860px; margin: 0 auto;">
+    <div class="promise-box">
+        <div class="section-tag">A Solução</div>
+        <h2>Em menos de <span class="yellow">2 horas de leitura</span>, você vai ter clareza total sobre o que está errado no seu delivery — e <span>exatamente o que fazer</span> para corrigir.</h2>
+        <br>
+        <p>Não é teoria. Não é papo motivacional. São estratégias, cálculos, exemplos reais e checklists que você aplica imediatamente — mesmo sem experiência em gestão.</p>
+    </div>
+</div>
+
+<!-- CAPÍTULOS -->
+<div style="padding: 0 20px 60px; max-width: 860px; margin: 0 auto;">
+    <div class="section-tag">O que você vai aprender</div>
+    <h2>9 capítulos que vão <span>transformar</span> o seu delivery</h2>
+
+    <div class="chapters-grid">
+        <div class="chapter-card">
+            <div class="chapter-number">1</div>
+            <div class="chapter-info">
+                <h3>💰 O Caos Financeiro</h3>
+                <p>Como organizar seus números, calcular margem real por pedido e parar de trabalhar no vermelho sem perceber.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">2</div>
+            <div class="chapter-info">
+                <h3>🔪 Precificação Assassina</h3>
+                <p>A fórmula completa para precificar seus produtos considerando todos os custos ocultos, incluindo as taxas dos apps.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">3</div>
+            <div class="chapter-info">
+                <h3>🚚 Logística do Terror</h3>
+                <p>Como otimizar rotas, gerenciar entregadores e transformar suas entregas em um diferencial competitivo.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">4</div>
+            <div class="chapter-info">
+                <h3>📱 Invisível nas Redes</h3>
+                <p>Estratégias de marketing digital de baixo custo que fazem seu delivery aparecer, ser lembrado e desejado.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">5</div>
+            <div class="chapter-info">
+                <h3>📅 Perdendo o Timing</h3>
+                <p>Como usar datas especiais, eventos e sazonalidades para aumentar o faturamento em até 40% sem destruir a margem.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">6</div>
+            <div class="chapter-info">
+                <h3>👻 Cliente Fantasma</h3>
+                <p>Técnicas comprovadas de fidelização para fazer o cliente voltar, comprar com mais frequência e indicar amigos.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">7</div>
+            <div class="chapter-info">
+                <h3>⭐ Qualidade em Queda Livre</h3>
+                <p>Como garantir padrão de qualidade em cada entrega, proteger suas avaliações e blindar sua reputação.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">8</div>
+            <div class="chapter-info">
+                <h3>💻 Tecnologia Defasada</h3>
+                <p>Quais ferramentas usar para ganhar tempo, reduzir custos operacionais e profissionalizar seu negócio.</p>
+            </div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-number">9</div>
+            <div class="chapter-info">
+                <h3>🚀 Plano de Ação em 90 Dias</h3>
+                <p>Um cronograma semana a semana para aplicar tudo e acompanhar os resultados com métricas claras.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PARA QUEM É -->
+<div style="padding: 0 20px 60px; max-width: 860px; margin: 0 auto;">
+    <div class="section-tag">Público</div>
+    <h2>Para quem é <span>— e para quem não é</span></h2>
+
+    <div class="forwhom-grid">
+        <div class="forwhom-card yes">
+            <div class="forwhom-title">✅ É para você se...</div>
+            <ul class="forwhom-list">
+                <li><span>✅</span> Você tem ou quer abrir um delivery</li>
+                <li><span>✅</span> Você quer parar de trabalhar no vermelho</li>
+                <li><span>✅</span> Você quer fidelizar mais clientes</li>
+                <li><span>✅</span> Você quer crescer de forma sustentável</li>
+                <li><span>✅</span> Você quer tomar decisões baseadas em dados</li>
+                <li><span>✅</span> Você quer ter um negócio que funciona sem você</li>
+            </ul>
+        </div>
+        <div class="forwhom-card no">
+            <div class="forwhom-title">❌ Não é para você se...</div>
+            <ul class="forwhom-list">
+                <li><span>❌</span> Você busca fórmula mágica sem esforço</li>
+                <li><span>❌</span> Você não está disposto a aplicar o conteúdo</li>
+                <li><span>❌</span> Você acha que já sabe tudo sobre delivery</li>
+                <li><span>❌</span> Você quer resultado sem nenhuma mudança</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- DEPOIMENTOS -->
+<div style="padding: 0 20px 60px; max-width: 860px; margin: 0 auto;">
+    <div class="section-tag">Resultados Reais</div>
+    <h2>O que donos de delivery estão <span>dizendo</span></h2>
+
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+                "Descobri que estava vendendo meu produto principal <strong>no prejuízo</strong>. Depois de ler o capítulo de precificação, reajustei os preços e minha margem foi de 4% para 22% em 3 semanas."
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar" style="background: #E63946;">R</div>
+                <div>
+                    <div class="author-name">Ricardo M.</div>
+                    <div class="author-role">Hamburgueria — SP</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+                "Minha nota no iFood estava em 3.8. Apliquei as estratégias de logística e qualidade do livro. Em 30 dias estava em <strong>4.7 e com 40% mais pedidos</strong>."
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar" style="background: #2DC653;">A</div>
+                <div>
+                    <div class="author-name">Amanda S.</div>
+                    <div class="author-role">Pizzaria — RJ</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+                "Vendi por 2 anos sem entender por que o dinheiro nunca sobrava. O capítulo de controle financeiro me fez ver que eu tinha <strong>R$ 12.000 de custos invisíveis por mês</strong>."
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar" style="background: #FFD60A; color: #000;">F</div>
+                <div>
+                    <div class="author-name">Felipe R.</div>
+                    <div class="author-role">Delivery de Marmitas — MG</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- OFERTA -->
+<div style="padding: 0 20px 60px; max-width: 860px; margin: 0 auto;" id="oferta">
+    <div class="offer-section">
+        <div class="offer-badge">🔥 Oferta Especial de Lançamento</div>
+
+        <h2>Tudo isso por apenas:</h2>
+
+        <div class="price-container">
+            <div class="price-old">De R$ 97,00</div>
+            <div class="price-new">
+                <sup>R$</sup>27<sub>,00</sub>
+            </div>
+            <div class="price-note">Pagamento único • Acesso vitalício</div>
+        </div>
+
+        <a href="https://pay.hotmart.com/D105685422V?bid=1778001823072" target="_blank" class="cta-btn">
+            🛒 QUERO GARANTIR MEU ACESSO AGORA
+        </a>
+
+        <p class="cta-subtext">
+            <span>🔒 Ambiente 100% seguro</span> &nbsp;•&nbsp; Cartão, PIX ou Boleto &nbsp;•&nbsp; <span>✅ Acesso imediato após pagamento</span>
+        </p>
+
+        <div class="guarantee-box">
+            <div class="guarantee-icon">🛡️</div>
+            <div>
+                <div class="guarantee-title">Garantia incondicional de 7 dias</div>
+                <div class="guarantee-text">
+                    Se em 7 dias você sentir que o conteúdo não vale cada centavo, basta enviar um e-mail e devolveremos 100% do seu dinheiro. Sem perguntas, sem burocracia. O risco é todo nosso.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ -->
+<div style="padding: 0 20px 60px; max-width: 860px; margin: 0 auto;">
+    <div class="section-tag">Dúvidas</div>
+    <h2>Perguntas <span>frequentes</span></h2>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Como vou receber o eBook após a compra?
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Assim que o pagamento for confirmado, você receberá um e-mail com o link para download imediato. O acesso é vitalício — você pode ler quando e quantas vezes quiser, no celular, tablet ou computador.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Funciona para delivery pequeno, que ainda está começando?
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Sim! O conteúdo foi pensado justamente para quem está começando ou para quem já tem um delivery mas não consegue ter clareza nos números. Quanto antes você aplicar essas estratégias, menos dinheiro você vai perder.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Preciso ter conhecimento em gestão ou finanças?
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Não precisa. O eBook foi escrito em linguagem simples e direta, com exemplos práticos e cálculos explicados passo a passo. Qualquer pessoa consegue aplicar o conteúdo.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                E se eu não gostar do conteúdo?
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Você tem 7 dias de garantia total. Se por qualquer motivo não ficar satisfeito, basta enviar um e-mail solicitando o reembolso e devolvemos 100% do seu dinheiro, sem nenhuma pergunta.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Em quanto tempo verei resultados?
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Depende da sua velocidade de implementação. Alguns leitores relatam perceber diferença já na primeira semana após ajustar a precificação. O plano de ação do Capítulo 9 é estruturado em 90 dias para uma transformação completa.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Posso parcelar o pagamento?
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Sim! A Hotmart aceita parcelamento em cartão de crédito, além de PIX e boleto bancário. Escolha a forma de pagamento mais conveniente para você.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- URGÊNCIA FINAL -->
+<div style="padding: 0 20px 60px;">
+    <div class="urgency-final">
+        <div class="section-tag">⏳ Atenção</div>
+        <h2>Cada dia sem agir é <span>dinheiro que você perde</span></h2>
+        <p style="color: #AAAAAA; margin-bottom: 20px; font-size: 16px; line-height: 1.6;">
+            Enquanto você adia essa decisão, seus custos continuam subindo, seus clientes continuam sumindo e seus concorrentes continuam crescendo. O preço de R$ 27 é de lançamento e pode aumentar a qualquer momento.
+        </p>
+
+        <a href="https://pay.hotmart.com/D105685422V?bid=1778001823072" target="_blank" class="cta-btn">
+            🚀 SIM! QUERO SALVAR MEU DELIVERY AGORA
+        </a>
+        <p class="cta-subtext" style="margin-top: 16px;">
+            <span>🛡️ Garantia de 7 dias</span> &nbsp;•&nbsp; Apenas R$ 27,00 &nbsp;•&nbsp; <span>✅ Acesso imediato</span>
+        </p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>
+        ©️ 2025 GNX Growth — Todos os direitos reservados<br>
+        <a href="#">Política de Privacidade</a> &nbsp;•&nbsp;
+        <a href="#">Termos de Uso</a> &nbsp;•&nbsp;
+        <a href="#">Suporte</a>
+    </p>
+    <br>
+    <p style="max-width: 500px; margin: 0 auto; font-size: 12px;">
+        Este produto é distribuído pela Hotmart. Os resultados podem variar de acordo com o esforço e dedicação de cada pessoa na aplicação do conteúdo.
+    </p>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+    <div class="sticky-price">
+        <small>De R$ 97 por apenas:</small>
+        R$ 27,00
+    </div>
+    <a href="https://pay.hotmart.com/D105685422V?bid=1778001823072" target="_blank" class="sticky-btn">
+        🛒 COMPRAR AGORA
+    </a>
+</div>
+
+<script>
+    function toggleFaq(el) {
+        const answer = el.nextElementSibling;
+        const arrow = el.querySelector('.faq-arrow');
+        answer.classList.toggle('active');
+        arrow.classList.toggle('rotated');
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
